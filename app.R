@@ -14,9 +14,8 @@ require(geojsonio)
 
 
 # Paths:
-path_workdir = "/cloud/project/Covid_19_Dashboard/"
-path_funcs = paste0(path_workdir, "funcs/")
-path_data =  paste0(path_workdir, "data_offline/")
+path_funcs = "funcs/"
+path_data =  "data_offline/"
 
 # Load the geojson for the map:
 # Source: https://datahub.io/core/geo-countries/datapackage.json
@@ -360,5 +359,6 @@ ui = dashboardPage(
 
 # Run the application 
 shinyApp(ui = ui, server = server)
+
 
 
