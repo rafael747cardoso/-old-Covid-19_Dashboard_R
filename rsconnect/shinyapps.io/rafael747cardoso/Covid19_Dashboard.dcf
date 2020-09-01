@@ -1,0 +1,12 @@
+name: Covid19_Dashboard
+title: Covid19_Dashboard
+username:
+account: rafael747cardoso
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 2655536
+bundleId: 3495196
+url: https://rafael747cardoso.shinyapps.io/Covid19_Dashboard/
+when: 1597027406.65996
+asMultiple: FALSE
+asStatic: FALSE
