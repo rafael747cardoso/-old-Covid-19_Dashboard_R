@@ -60,8 +60,13 @@ df_world = prepare_dataset(country_chosen = "World")
 # Backend:
 server = function(input, output, session){
     
+    observe({
+        if(input$button_reload_session){
+            session$reload()
+        }
+    })
     ### Dataset choosen from input ###
-
+    
     values = reactiveValues(
         df_contry = prepare_dataset(country_chosen = "Brazil")
     )
@@ -70,14 +75,6 @@ server = function(input, output, session){
         values$df_contry = prepare_dataset(country_chosen = input$country_id)
         values$country_name = (df_countries %>%
                                    dplyr::filter(name == input$country_id))$name[1]
-    })
-    
-    observe({
-        if(format(values$df_contry$date[nrow(values$df_contry)],
-                  format = "%Y/%m/%d") %>% 
-               as.Date() < Sys.Date() - 3) {
-            session$reload()
-        }
     })
 
     ### Plots ###
@@ -222,11 +219,10 @@ sidebar = dashboardSidebar(
                      tabName = "maps_world",
                      icon = icon("globe-africa"))
         )
-    )
-    #,
-    # actionButton(inputId = "reset_session_button", 
-    #              label = "Update Data",
-    #              class = "btn-primary")
+    ),
+    actionButton(inputId = "button_reload_session",
+                 label = "Update Data",
+                 class = "btn-primary")
 )
 
 body = dashboardBody(
