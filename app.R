@@ -45,7 +45,7 @@ update_dataset(silence = TRUE)
 
 # Countries list:
 df_countries = data.frame("name" = coronavirus$country %>% 
-                                     unique(),
+                                       unique(),
                           stringsAsFactors = FALSE)
 df_countries$name_id = df_countries$name %>%
                            toupper() %>%
@@ -57,14 +57,21 @@ df_countries$name_id = df_countries$name %>%
 df_world = prepare_dataset(country_chosen = "World")
 
 
-# Backend:
+
+### Backend
+
 server = function(input, output, session){
-    
-    observe({
-        if(input$button_reload_session){
+
+    # Restart the R session to refresh the data from the API:
+    observeEvent(input$button_reload_session, {
+        aggg_result = -1
+        if(aggg_result == -1){
+            .rs.restartR()
             session$reload()
+            return()
         }
-    })
+    })    
+    
     ### Dataset choosen from input ###
     
     values = reactiveValues(
@@ -191,7 +198,8 @@ server = function(input, output, session){
 }
 
 
-# Frontend:
+### Frontend
+
 sidebar = dashboardSidebar(
     sidebarMenu(
         div(class = "sidemenubox",
@@ -317,7 +325,6 @@ body = dashboardBody(
         # Choosen country:
         tabItem(tabName = "plots_country",
             uiOutput("ui_panel_country")
-            # plotlyOutput("testplot")
         ),
         
         # World:

@@ -17,7 +17,7 @@ ui_countries_comparison = function(df_data,
                 fluidRow(
                     column(12, 
                         h2(style = "font-weight: 700;",
-                            "Comparison between countries trajectories"
+                            "Countries trajectories"
                         ),
                         h3(paste0("Updated in ", format(df_data$date[nrow(df_data)],
                                                             format = "%d/%m/%Y")))

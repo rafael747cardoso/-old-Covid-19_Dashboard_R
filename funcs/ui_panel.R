@@ -6,9 +6,10 @@ ui_data_panel = function(country_name_id,
                          df_data, 
                          data_source){
 
-    fluidRow(style = "margin-left: 5px;
-                      margin-right: 5px;",
-    
+    ui_block = fluidRow(
+        style = "margin-left: 5px;
+                 margin-right: 5px;",
+        
         # General info:
         fluidRow(
             box(background = "aqua",
@@ -18,7 +19,7 @@ ui_data_panel = function(country_name_id,
                 fluidRow(
                     column(12, 
                         h2(style = "font-weight: 700;",
-                            paste0("Covid-19 pandemic evolution in ", country_name)
+                            paste0("Time Series of ", country_name)
                         ),
                         h3(paste0("Updated in ", format(df_data$date[nrow(df_data)],
                                                         format = "%d/%m/%Y"))),
@@ -197,6 +198,7 @@ ui_data_panel = function(country_name_id,
         )
     
     )
-
+    
+    return(ui_block)
 }
 
